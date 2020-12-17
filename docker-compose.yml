@@ -7,13 +7,17 @@ services:
       - mongodb
     ports:
       - 3000:3000
-    network:
+    restart: "on-failure"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    networks:
       - nw
   mongodb:
     image: mongo:latest
     ports:
       - "27017:27017"
-    network:
+    networks:
       - nw
 networks:
   nw:
