@@ -10,7 +10,9 @@ class scoreController {
 
     getScore(req, res, next ){
         const userId = req.params.userId;
-        scoreService.userRankingInfo(userId).then(data => res.json({score: data.score})).catch(err => res.json(err));
+        scoreService.userRankingInfo(userId).then(data => {
+            res.json({score: data[0].score});
+        }).catch(err => res.json(err));
     }
 
     incrementScore(req, res, next){
@@ -30,7 +32,7 @@ class scoreController {
                 index = i;
                 return item.userId === val;
               });
-            res.json({positionRanking: index, rankingLength: data.length});
+            res.json({positionRanking: index+1, rankingLength: data.length});
         }).catch(err => {
             res.json(err);
             return;
