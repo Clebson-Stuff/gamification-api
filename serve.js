@@ -1,5 +1,5 @@
 import * as http from 'http';
-import * as app from './app/app.js';
+import app from './app/app.js';
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
